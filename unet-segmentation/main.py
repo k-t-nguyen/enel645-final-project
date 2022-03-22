@@ -4,26 +4,28 @@ import glob
 from data_generator import DataGeneratorUnet
 import tensorflow as tf
 
+username = "baokhoi.nguyen"
+
 
 def run_data_preparation():
     # Training set preparation
-    files_list_train = "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\train-set.txt"
-    imgs_paths = ["C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\Original",
-                  "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\Skull-stripping-masks",
-                  "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\WM-GM-CSF"]
-    out_paths_train = ["C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Train\\Image",
-                       "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Train\\Brain-mask",
-                       "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Train\\WM-GM-CSF"
+    files_list_train = "/home/" +username + "/unet-segmentation/Data/train-set.txt"
+    imgs_paths = ["/home/" +username + "/unet-segmentation/Data/Original",
+                  "/home/" +username + "/unet-segmentation/Data/Skull-stripping-masks",
+                  "/home/" +username + "/unet-segmentation/Data/WM-GM-CSF"]
+    out_paths_train = ["/home/" +username + "/unet-segmentation/Data/pre-processed/Train/Image",
+                       "/home/" +username + "/unet-segmentation/Data/pre-processed//Train/Brain-mask",
+                       "/home/" +username + "/unet-segmentation/Data/pre-processed/Train/WM-GM-CSF"
                        "-mask"]
 
     prepare_data(files_list_train, imgs_paths, out_paths_train, verbose=1)
 
     # Validation set preparation
-    files_list_val = "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\val-set.txt"
-    out_paths_val = ["C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Validation\\Image",
-                     "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Validation\\Brain"
+    files_list_val = "/home/" +username + "/unet-segmentation/Data/val-set.txt"
+    out_paths_val = ["/home/" +username + "/unet-segmentation/Data/pre-processed/Validation/Image",
+                     "/home/" +username + "/unet-segmentation/Data/pre-processed/Validation/Brain"
                      "-mask",
-                     "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Validation\\WM-GM"
+                     "/home/" +username + "/unet-segmentation/Data/pre-processed/Validation/WM-GM"
                      "-CSF-mask"]
 
     prepare_data(files_list_val, imgs_paths, out_paths_val, verbose=1)
@@ -32,18 +34,18 @@ def run_data_preparation():
 
 def run_training():
     imgs_list_train = glob.glob(
-        "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Train\\Image\\*.npy")
+        "/home/" +username + "/unet-segmentation/Data/pre-processed/Train/Image/*.npy")
     masks_list_train01 = glob.glob(
-        "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\pre-processed\\Train\\Brain-mask\\*.npy")
+        "/home/" +username + "/unet-segmentation/Data/pre-processed/Train/Brain-mask/*.npy")
     masks_list_train02 = glob.glob(
-        "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\pre-processed\\Train\\WM-GM-CSF-mask\\*.npy")
+        "/home/" +username + "/unet-segmentation/Data/pre-processed/Train/WM-GM-CSF-mask/*.npy")
 
     imgs_list_val = glob.glob(
-        "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\\pre-processed\\Validation\\Image\\*.npy")
+        "/home/" +username + "/unet-segmentation/Data/pre-processed/Validation/Image/*.npy")
     masks_list_val01 = glob.glob(
-        "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\pre-processed\\Validation\\Brain-mask\\*.npy")
+        "/home/" +username + "/unet-segmentation/Data/pre-processed/Validation/Brain-mask/*.npy")
     masks_list_val02 = glob.glob(
-        "C:\\Users\\rober\\PycharmProjects\\unet-segmentation\\Data\pre-processed\\Validation\\WM-GM-CSF-mask\\*.npy")
+        "/home/" +username + "/unet-segmentation/Data/pre-processed/Validation/WM-GM-CSF-mask/*.npy")
 
     batch_size = 64
     gen_train = DataGeneratorUnet(imgs_list_train, masks_list_train01, masks_list_train02, batch_size=batch_size)
