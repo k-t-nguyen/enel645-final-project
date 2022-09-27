@@ -1,7 +1,7 @@
 # enel645-final-project
 Final project for ENEL 645: Data Mining & Machine Learning by David Cooksley, Evan Cooksley, Brendan Mahler, Khoi Nguyen
 
-##Abstract##
+##Abstract
 A common application of neural networks in the medical field
 is image segmentation. When interpreting MRI brain images,
 using neural networks to segment the image can greatly im-
